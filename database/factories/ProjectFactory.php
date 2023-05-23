@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,23 @@ class ProjectFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+
+    public function definition()
     {
+        $colorName = $this
+            ->fake()            
+            ->randomElement(Project::getAvailableTextColors());
+
+        $iconName = $this
+            ->fake()
+            // ->faker
+            ->randomElement(Project::getAvailableIcons());
+
         return [
-            //
+            'title' => $this->fake()->unique()->word(2, true),
+            'description' => $this->fake()->sentence(),
+            'color' => $colorName,
+            'icon_name' => $iconName,
         ];
     }
 }
