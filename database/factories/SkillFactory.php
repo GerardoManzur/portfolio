@@ -20,11 +20,13 @@ class SkillFactory extends Factory
     public function definition()
     {
         $color = $this
-            ->fake()
+            ->faker
+            // ->fake()
             ->randomElement(Skill::getAvailableBackgroundColors());
 
         return [               
-            'name' => $this->fake()->unique()->word(),
+            'name' => $this->faker->unique()->word(),
+            // 'name' => $this->fake()->unique()->word(),
             'color' =>$color,
         ];
     }

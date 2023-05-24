@@ -19,17 +19,20 @@ class ProjectFactory extends Factory
     public function definition()
     {
         $colorName = $this
-            ->fake()            
+            ->faker          
+            // ->fake()
             ->randomElement(Project::getAvailableTextColors());
 
         $iconName = $this
-            ->fake()
-            // ->faker
+            // ->fake()
+            ->faker
             ->randomElement(Project::getAvailableIcons());
-
+        
         return [
-            'title' => $this->fake()->unique()->word(2, true),
-            'description' => $this->fake()->sentence(),
+            'title' => $this->faker->unique()->word(2, true),
+            'description' => $this->faker->sentence(),
+            // 'title' => $this->fake()->unique()->word(2, true),
+            // 'description' => $this->fake()->sentence(),
             'color' => $colorName,
             'icon_name' => $iconName,
         ];
